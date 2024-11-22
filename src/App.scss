@@ -1,0 +1,202 @@
+.app{
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  .digitalSignatures{
+
+    .tt{
+      font-size: 30px;
+      text-align: center;
+      color: rgb(245, 59, 59);
+    }
+
+    .signature{
+      display: flex;
+      justify-content: center;
+      padding-top: 50px;
+      gap: 100px;
+
+      .generatedSignature{
+      width: 600px;
+      min-height: 100vh;
+      border-right: 1px solid darkgrey;
+
+      .title{
+        font-size: 20px;
+      }
+
+      .group{
+        display: flex;
+        justify-content: start;
+        gap:30px;
+        margin-top: 30px;
+
+        p{
+          width: 100px;
+        }
+
+        textarea{
+          width: 250px;
+          min-height: 200px;
+          padding: 20px;
+          
+          &:focus{
+            outline: blue;
+          }
+        }
+
+        button{
+          height: 50px;
+          width: 70px;
+          border-radius: 8px;
+          border: none;
+          background: rgb(2,0,36);
+          background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(61,102,134,1) 0%, rgba(95,140,150,1) 100%);
+          color: white;
+          cursor: pointer;
+        }
+        
+      }
+
+      .gr-btn{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .bt-sign{
+        display: flex;
+        justify-content: center;
+        button{
+          border: none;
+          border-radius: 8px;
+          color: white;
+          margin-top: 30px;
+          width: 200px;
+          height: 50px;
+          background: rgb(2,0,36);
+          background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(61,102,134,1) 0%, rgba(95,140,150,1) 100%);
+          cursor: pointer;
+        }
+      }
+
+      .gr-hashFunction{
+        display: flex;
+        justify-content: start;
+        gap:30px;
+        margin-top: 30px;
+
+        p{
+          width: 100px;
+        }
+
+        textarea{
+          width: 250px;
+          min-height: 70px;
+          padding: 20px;
+          
+          &:focus{
+            outline: blue;
+          }
+        }
+      }
+    }
+
+    .checkSignature{
+      width: 500px;
+      min-height: 500px;
+
+      .title{
+        font-size: 20px;
+      }
+
+      .group{
+        display: flex;
+        justify-content: start;
+        gap:30px;
+        margin-top: 30px;
+
+        p{
+          width: 100px;
+        }
+
+        textarea{
+          width: 250px;
+          min-height: 200px;
+          padding: 20px;
+          
+          &:focus{
+            outline: blue;
+          }
+        }
+
+        button{
+          height: 50px;
+          width: 70px;
+          border-radius: 8px;
+          border: none;
+          background: rgb(2,0,36);
+          background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(61,102,134,1) 0%, rgba(95,140,150,1) 100%);
+          color: white;
+          cursor: pointer;
+        }
+        
+      }
+
+      .bt-sign{
+        display: flex;
+        justify-content: center;
+        button{
+          border: none;
+          border-radius: 8px;
+          color: white;
+          margin-top: 30px;
+          width: 200px;
+          height: 50px;
+          background: rgb(2,0,36);
+          background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(61,102,134,1) 0%, rgba(95,140,150,1) 100%);
+          cursor: pointer;
+        }
+      }
+
+      .gr-hashFunction{
+        display: flex;
+        justify-content: start;
+        gap:30px;
+        margin-top: 30px;
+
+        p{
+          width: 100px;
+        }
+
+        textarea{
+          width: 250px;
+          min-height: 70px;
+          padding: 20px;
+          
+          &:focus{
+            outline: blue;
+          }
+        }
+
+        .noti{
+          width: 250px;
+          padding: 20px;
+          border: 1px solid rgb(94, 94, 94);
+        }
+
+        .green{
+          color: green;
+        }
+
+        .red{
+          color: red;
+        }
+      }
+    }
+    }
+    
+  }
+}
