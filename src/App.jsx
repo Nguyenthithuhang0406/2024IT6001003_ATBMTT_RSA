@@ -38,15 +38,23 @@ const App = () => {
   //hàm kiểm tra chữ ký
   const handleVerify = () => {
     const hash = ComputeMd5Hash(verificationText);
-    const decryptedHash = rsa.GiaiMa(verificationSignature);
-    if (signTextUnChange !== verificationText) {
-      setNotification("Văn bản ký không hợp lệ");
-    } else {
-      if (hash === decryptedHash && verificationSignature === signature) {
-        setNotification("Chữ ký hợp lệ");
-      } else if (hash !== decryptedHash || verificationSignature !== signature) {
-        setNotification("Chữ ký không hợp lệ");
+    setVerificationResult(hash);
+    try {
+      const decryptedHash = rsa.GiaiMa(verificationSignature);
+      if (signTextUnChange !== verificationText) {
+        setNotification("Văn bản ký không hợp lệ");
+      } else {
+        if (hash === decryptedHash && verificationSignature === signature) {
+          setNotification("Chữ ký hợp lệ");
+        } else if (
+          hash !== decryptedHash ||
+          verificationSignature !== signature
+        ) {
+          setNotification("Chữ ký không hợp lệ");
+        }
       }
+    } catch (error) {
+      setNotification("Chữ ký không hợp lệ");
     }
   };
 
