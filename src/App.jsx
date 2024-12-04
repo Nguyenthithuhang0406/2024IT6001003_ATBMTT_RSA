@@ -16,7 +16,6 @@ const App = () => {
   const [verificationSignature, setVerificationSignature] = useState("");
   const [verificationResult, setVerificationResult] = useState("");
   const [notification, setNotification] = useState("");
-  const [signTextUnChange, setSignTextUnChange] = useState("");
 
   //hàm ký
   const handleSign = () => {
@@ -32,7 +31,6 @@ const App = () => {
     setVerificationText(textToSign);
     setVerificationSignature(signature);
     setVerificationResult(hashFunction);
-    setSignTextUnChange(textToSign);
   };
 
   //hàm kiểm tra chữ ký
@@ -41,7 +39,7 @@ const App = () => {
     setVerificationResult(hash);
     try {
       const decryptedHash = rsa.GiaiMa(verificationSignature);
-      if (signTextUnChange !== verificationText) {
+      if (signedText !== verificationText) {
         setNotification("Văn bản ký không hợp lệ");
       } else {
         if (hash === decryptedHash && verificationSignature === signature) {
