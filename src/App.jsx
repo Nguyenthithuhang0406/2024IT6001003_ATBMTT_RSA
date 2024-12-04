@@ -84,7 +84,7 @@ const App = () => {
             </div>
 
             <div className="gr-hashFunction">
-              <p>Hàm băm</p>
+              <p>Giá trị băm</p>
               <textarea value={hashFunction} readOnly />
             </div>
 
@@ -135,7 +135,7 @@ const App = () => {
             </div>
 
             <div className="gr-hashFunction">
-              <p>Hàm băm</p>
+              <p>Giá trị băm</p>
               <textarea value={verificationResult} readOnly />
             </div>
 

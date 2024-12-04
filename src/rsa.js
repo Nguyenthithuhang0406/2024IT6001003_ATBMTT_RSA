@@ -46,7 +46,7 @@ class RSA {
     while (true) {
       //tìm d sao cho (k*(p-1)*(q-1)+1) chia hết cho e
       if ((k * (this.p - 1) * (this.q - 1) + 1) % this.e === 0) {
-        this.d = (k * (this.p - 1) * (this.q - 1) + 1) / this.e;
+        this.d = (k * (this.p - 1) * (this.q - 1) + 1) / this.e; //d là khoá bí mật
         break;
       }
       k++;
@@ -68,7 +68,7 @@ class RSA {
     return GCD(a, b) === 1;
   }
 
-  //hàm tính a^e mod n
+  //hàm tính m^e mod n
   Mod(m, e, n) {
     let kq = 1;
     m = m % n;
@@ -84,17 +84,25 @@ class RSA {
 
   //hàm mã hoá
   MaHoa(s) {
+    //chuyển từng ký tự sang mã ASCII
     const nguyen = Array.from(s).map((c) => c.charCodeAt(0));
+    // mã hoá từng ký tự trong nguyen theo công thức m^e mod n
     const a = nguyen.map((n) => this.Mod(n, this.e, this.n));
+    //chuyển mã ASCII sang chuỗi
     const str = String.fromCharCode(...a);
+    //chuyển chuỗi sang mã base64
     return btoa(unescape(encodeURIComponent(str)));
   }
 
   //hàm giải mã
   GiaiMa(s) {
+    //giải mã base64
     const giaima = decodeURIComponent(escape(atob(s)));
+    //chuyển từng ký tự sang mã ASCII
     const b = Array.from(giaima).map((c) => c.charCodeAt(0));
+    //giải mã từng ký tự trong b theo công thức m^d mod n
     const c = b.map((n) => this.Mod(n, this.d, this.n));
+    //chuyển mã ASCII sang chuỗi
     return String.fromCharCode(...c);
   }
 }
