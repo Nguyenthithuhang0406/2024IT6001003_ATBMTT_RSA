@@ -86,8 +86,8 @@ class RSA {
   MaHoa(s) {
     //chuyển từng ký tự sang mã ASCII
     const nguyen = Array.from(s).map((c) => c.charCodeAt(0));
-    // mã hoá từng ký tự trong nguyen theo công thức m^e mod n
-    const a = nguyen.map((n) => this.Mod(n, this.e, this.n));
+    // mã hoá từng ký tự trong nguyen theo công thức m^d mod n
+    const a = nguyen.map((n) => this.Mod(n, this.d, this.n));
     //chuyển mã ASCII sang chuỗi
     const str = String.fromCharCode(...a);
     //chuyển chuỗi sang mã base64
@@ -100,8 +100,8 @@ class RSA {
     const giaima = decodeURIComponent(escape(atob(s)));
     //chuyển từng ký tự sang mã ASCII
     const b = Array.from(giaima).map((c) => c.charCodeAt(0));
-    //giải mã từng ký tự trong b theo công thức m^d mod n
-    const c = b.map((n) => this.Mod(n, this.d, this.n));
+    //giải mã từng ký tự trong b theo công thức m^e mod n
+    const c = b.map((n) => this.Mod(n, this.e, this.n));
     //chuyển mã ASCII sang chuỗi
     return String.fromCharCode(...c);
   }

@@ -59,7 +59,7 @@ const App = () => {
   return (
     <div className="app">
       <div className="digitalSignatures">
-        <p className="tt">CHỮ KÝ SỐ</p>
+        <p className="tt">CHỮ KÝ SỐ RSA SỬ DỤNG HÀM BĂM MD5</p>
         <div className="signature">
           <div className="generatedSignature">
             <p className="title">Phát sinh chữ ký</p>
