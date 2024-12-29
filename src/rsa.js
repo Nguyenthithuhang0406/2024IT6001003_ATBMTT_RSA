@@ -14,6 +14,36 @@ class RSA {
     return true;
   }
 
+  // Thuật toán Euclid mở rộng để tìm nghịch đảo modulo
+  TimNghichDaoModulo(a, m) {
+    let m0 = m;
+    let y = 0,
+      x = 1;
+
+    if (m === 1) return 0;
+
+    while (a > 1) {
+      let q = Math.floor(a / m); // Thương
+      let t = m;
+
+      // m là phần dư
+      m = a % m;
+      a = t;
+      t = y;
+
+      // Cập nhật x và y
+      y = x - q * y;
+      x = t;
+    }
+
+    // Đảm bảo x là số dương
+    if (x < 0) {
+      x += m0;
+    }
+
+    return x;
+  }
+
   //hàm tạo khóa
   TaoKhoa() {
     // hàm random số có 2 chữ số
@@ -32,6 +62,7 @@ class RSA {
 
     //tính n = p * q
     this.n = this.p * this.q;
+    const phi = (this.p - 1) * (this.q - 1);
 
     do {
       //random số e có 2 chữ số và kiểm tra xem có phải là số nguyên tố không, và e phải nguyên tố cùng nhau với (p-1)*(q-1)
@@ -42,15 +73,9 @@ class RSA {
       !this.NguyenToCungNhau(this.e, (this.p - 1) * (this.q - 1))
     );
 
-    let k = 1;
-    while (true) {
-      //tìm d sao cho (k*(p-1)*(q-1)+1) chia hết cho e
-      if ((k * (this.p - 1) * (this.q - 1) + 1) % this.e === 0) {
-        this.d = (k * (this.p - 1) * (this.q - 1) + 1) / this.e; //d là khoá bí mật
-        break;
-      }
-      k++;
-    }
+    // Tìm d (khoá bí mật) sử dụng thuật toán Euclid mở rộng
+    this.d = this.TimNghichDaoModulo(this.e, phi);
+
   }
 
   //hàm kiểm tra 2 số có phải là nguyên tố cùng nhau không
