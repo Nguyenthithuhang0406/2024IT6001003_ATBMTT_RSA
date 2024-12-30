@@ -21,7 +21,7 @@ const App = () => {
   const handleSign = () => {
     const hash = ComputeMd5Hash(textToSign);
     setHashFunction(hash);
-    const signed = rsa.MaHoa(hash);
+    const signed = rsa.Sign(hash);
     setSignature(signed);
     setSignedText(textToSign);
   };
@@ -38,7 +38,7 @@ const App = () => {
     const hash = ComputeMd5Hash(verificationText);
     setVerificationResult(hash);
     try {
-      const decryptedHash = rsa.GiaiMa(verificationSignature);
+      const decryptedHash = rsa.Verify(verificationSignature);
       if (signedText !== verificationText) {
         setNotification("Văn bản ký không hợp lệ");
       } else {
@@ -100,7 +100,6 @@ const App = () => {
 
           <div className="checkSignature">
             <p className="title">Kiểm tra chữ ký</p>
-
             <div className="group">
               <p>Văn bản ký</p>
               <textarea
@@ -114,7 +113,6 @@ const App = () => {
                 }}
               />
             </div>
-
             <div className="bt-sign">
               <button onClick={handleVerify}>Kiểm tra chữ kí</button>
             </div>
@@ -131,12 +129,10 @@ const App = () => {
                 }}
               />
             </div>
-
             <div className="gr-hashFunction">
               <p>Giá trị băm</p>
               <textarea value={verificationResult} readOnly />
             </div>
-
             <div className="gr-hashFunction">
               <p>Thông báo</p>
               <div

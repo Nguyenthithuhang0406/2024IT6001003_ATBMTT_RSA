@@ -65,12 +65,14 @@ class RSA {
     const phi = (this.p - 1) * (this.q - 1);
 
     do {
-      //random số e có 2 chữ số và kiểm tra xem có phải là số nguyên tố không, và e phải nguyên tố cùng nhau với (p-1)*(q-1)
-      //tiếp tục random cho đến khi nào e là số nguyên tố và nguyên tố cùng nhau với (p-1)*(q-1) thì dừng
+      //random số e có 2 chữ số và kiểm tra xem có phải là số nguyên tố không, 
+      // và e phải nguyên tố cùng nhau với (p-1)*(q-1)
+      //tiếp tục random cho đến khi nào e là số nguyên tố 
+      // và nguyên tố cùng nhau với (p-1)*(q-1) thì dừng
       this.e = Math.floor(Math.random() * (100 - 2) + 2);
     } while (
       !this.KiemTraNguyenTo(this.e) ||
-      !this.NguyenToCungNhau(this.e, (this.p - 1) * (this.q - 1))
+      !this.NguyenToCungNhau(this.e, phi)
     );
 
     // Tìm d (khoá bí mật) sử dụng thuật toán Euclid mở rộng
@@ -89,7 +91,8 @@ class RSA {
       }
       return x;
     };
-    //nếu ước chung lớn nhất của 2 số là 1 thì 2 số đó là nguyên tố cùng nhau, return true, ngược lại return false
+    //nếu ước chung lớn nhất của 2 số là 1 
+    // thì 2 số đó là nguyên tố cùng nhau, return true, ngược lại return false
     return GCD(a, b) === 1;
   }
 
@@ -107,8 +110,8 @@ class RSA {
     return kq;
   }
 
-  //hàm mã hoá
-  MaHoa(s) {
+  //hàm ký
+  Sign(s) {
     //chuyển từng ký tự sang mã ASCII
     const nguyen = Array.from(s).map((c) => c.charCodeAt(0));
     // mã hoá từng ký tự trong nguyen theo công thức m^d mod n
@@ -119,8 +122,8 @@ class RSA {
     return btoa(unescape(encodeURIComponent(str)));
   }
 
-  //hàm giải mã
-  GiaiMa(s) {
+  //hàm xác minh chữ ký
+  Verify(s) {
     //giải mã base64
     const giaima = decodeURIComponent(escape(atob(s)));
     //chuyển từng ký tự sang mã ASCII
